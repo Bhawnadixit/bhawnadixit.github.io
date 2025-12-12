@@ -35,7 +35,7 @@ export default function App() {
             preload="auto"
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src=`${import.meta.env.BASE_URL}/assets/movie_proteins_cropped.mp4" type="video/mp4` />
+            <source src={`${import.meta.env.BASE_URL}/assets/movie_proteins_cropped.mp4" type="video/mp4`} />
           </video>
 
           {/* Dark overlay for readability */}
