@@ -98,21 +98,21 @@ export function Proteins() {
       label: 'Bond vibrations',
       sub: '1 fs – 1 ps',
       desc: 'Fast stretching and bending of bonds and angles. These motions are typically averaged out in most experiments, but define the high-frequency limit of protein dynamics.',
-      image: '/assets/bond_stretching.gif',
+      image: '${import.meta.env.BASE_URL}/assets/bond_stretching.gif',
     },
     {
       time: 5e-11,
       label: 'Side-chain flickers',
       sub: '1 ps – 1 ns',
       desc: 'Local χ-angle rotations and backbone wobbles. They modulate local packing and show up in NMR order parameters and short MD trajectories.',
-      image: '/assets/bond_vibrations.gif'
+      image: '${import.meta.env.BASE_URL}/assets/bond_vibrations.gif'
     },
     {
       time: 5e-8,
       label: 'Loop breathing',
       sub: '1 ns – 1 μs',
       desc: 'Opening and closing of loops and turns, altering the exposure of binding pockets, glycosylation sites and epitopes.',
-      image: '/assets/dynamics_movie.gif'
+      image: '${import.meta.env.BASE_URL}/assets/dynamics_movie.gif'
     },
     {
       time: 5e-5,
@@ -125,7 +125,7 @@ export function Proteins() {
       label: 'Domain motions',
       sub: '1 ms – 1 s',
       desc: 'Hinge and shear motions between domains that often control allosteric regulation and long-range communication.',
-      image: '/assets/p_folding.gif',
+      image: '${import.meta.env.BASE_URL}/assets/p_folding.gif',
     },
     {
       time: 5e0,
@@ -138,7 +138,7 @@ export function Proteins() {
       label: 'Binding / unbinding',
       sub: '1 ms – 100 s',
       desc: 'Association and dissociation of ligands, glycans and partners. Kinetics here link conformational dynamics directly to affinity.',
-      image: '/assets/binding.gif'
+      image: '${import.meta.env.BASE_URL}/assets/binding.gif'
     },
     {
       time: 5e2,

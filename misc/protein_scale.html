@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Protein Time Scales – Bhawna Dixit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --text-main: #111827;
+      --text-soft: #4b5563;
+      --text-muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #ffffff;
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent-dark);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Page layout – no boxes, just content on white */
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 0.75rem;
+    }
+
+    header {
+      padding-bottom: 1rem;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.72rem;
+      color: var(--accent-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 3vw, 2.3rem);
+      margin: 0 0 0.45rem;
+    }
+
+    .lead {
+      font-size: 0.97rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+      margin: 0 0 0.8rem;
+    }
+
+    .note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0 0 0.6rem;
+    }
+
+    hr {
+      border: none;
+      border-bottom: 1px solid #e5e7eb;
+      margin: 0 0 0.5rem;
+    }
+
+    /* ----- SCROLLING TIME SCALE STRIP ----- */
+
+    /* outer container – creates scrollbar at bottom */
+    .scroll-shell {
+      margin-top: 0.75rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 0.75rem 0 0.75rem;
+      white-space: nowrap;
+    }
+
+    /* very wide inner strip */
+    .timeline {
+      position: relative;
+      height: 260px;            /* overall height of strip */
+      min-width: 2600px;        /* so we always have horizontal scroll */
+      margin-bottom: 0.2rem;
+    }
+
+    /* baseline */
+    .timeline-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 130px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    /* decade tick marks */
+    .tick {
+      position: absolute;
+      bottom: 120px;
+      width: 1px;
+      height: 14px;
+      background: #d1d5db;
+    }
+
+    .tick-label {
+      position: absolute;
+      top: 140px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+
+    /* events */
+    .event {
+      position: absolute;
+      top: 80px;       /* base vertical position, can adjust individually if needed */
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      transform: translateX(-50%);
+      max-width: 220px;
+      text-align: left;
+    }
+
+    .event-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .event-title {
+      font-weight: 600;
+      color: var(--accent-dark);
+      margin-bottom: 0.05rem;
+    }
+
+    .event-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .event-text {
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .axis-caption {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0.2rem 0 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding-inline: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="eyebrow">Proteins</div>
+      <h1>Protein time scales</h1>
+      <p class="lead">
+        A horizontally scrollable time axis for protein motions, from
+        <strong>femtosecond bond vibrations</strong> up to
+        <strong>hours-long turnover</strong>. Times are placed on a logarithmic
+        scale in seconds, similar in spirit to the “1-pixel solar system”.
+      </p>
+      <p class="note">
+        All images are optional – here we just show markers and text. You can later
+        add GIFs or small icons for each process. Scroll to the right to see slower
+        motions.
+      </p>
+    </header>
+
+    <hr />
+
+    <main>
+      <div class="scroll-shell" aria-label="Protein time scale strip">
+        <div class="timeline" id="timeline">
+          <!-- baseline -->
+          <div class="timeline-line"></div>
+
+          <!-- decade ticks (log10 seconds) -->
+          <!-- from 10^-15 to 10^4 (hours) -->
+          <div class="tick" data-exp="-15"></div>
+          <div class="tick-label" data-exp-label="-15">10⁻¹⁵ s (fs)</div>
+
+          <div class="tick" data-exp="-12"></div>
+          <div class="tick-label" data-exp-label="-12">10⁻¹² s (ps)</div>
+
+          <div class="tick" data-exp="-9"></div>
+          <div class="tick-label" data-exp-label="-9">10⁻⁹ s (ns)</div>
+
+          <div class="tick" data-exp="-6"></div>
+          <div class="tick-label" data-exp-label="-6">10⁻⁶ s (μs)</div>
+
+          <div class="tick" data-exp="-3"></div>
+          <div class="tick-label" data-exp-label="-3">10⁻³ s (ms)</div>
+
+          <div class="tick" data-exp="0"></div>
+          <div class="tick-label" data-exp-label="0">10⁰ s</div>
+
+          <div class="tick" data-exp="2"></div>
+          <div class="tick-label" data-exp-label="2">10² s (~min)</div>
+
+          <div class="tick" data-exp="4"></div>
+          <div class="tick-label" data-exp-label="4">10⁴ s (~hours)</div>
+
+          <!-- events: data-exp = log10(seconds) -->
+          <div class="event" data-exp="-14.5">
+            <div class="event-dot"></div>
+            <div class="event-title">Bond vibrations</div>
+            <div class="event-sub">10⁻¹⁵–10⁻¹³ s</div>
+            <div class="event-text">
+              Ultrafast stretching and bending of covalent bonds and angles.
+            </div>
+          </div>
+
+          <div class="event" data-exp="-12.5">
+            <div class="event-dot"></div>
+            <div class="event-title">Side-chain librations</div>
+            <div class="event-sub">10⁻¹³–10⁻¹¹ s</div>
+            <div class="event-text">
+              Very local motions around rotatable bonds; largely averaged out in
+              most experimental observables.
+            </div>
+          </div>
+
+          <div class="event" data-exp="-11">
+            <div class="event-dot"></div>
+            <div class="event-title">Fast side-chain flips</div>
+            <div class="event-sub">10⁻¹²–10⁻¹⁰ s</div>
+            <div class="event-text">
+              χ-angle jumps and methyl rotations that contribute to NMR order
+              parameters.
+            </div>
+          </div>
+
+          <div class="event" data-exp="-9.5">
+            <div class="event-dot"></div>
+            <div class="event-title">Backbone wobbling</div>
+            <div class="event-sub">10⁻¹¹–10⁻⁹ s</div>
+            <div class="event-text">
+              Small-amplitude motions of backbone atoms within a local minimum,
+              sampled well in short MD simulations.
+            </div>
+          </div>
+
+          <div class="event" data-exp="-8">
+            <div class="event-dot"></div>
+            <div class="event-title">Loop breathing</div>
+            <div class="event-sub">10⁻⁹–10⁻⁷ s</div>
+            <div class="event-text">
+              Opening/closing of loops or termini that modulate access to active
+              sites or glycans.
+            </div>
+          </div>
+
+          <div class="event" data-exp="-6.5">
+            <div class="event-dot"></div>
+            <div class="event-title">Secondary-structure shifts</div>
+            <div class="event-sub">10⁻⁸–10⁻⁵ s</div>
+            <div class="event-text">
+              Helix–coil or β-structure rearrangements, often enriched in
+              dynamically ambiguous regions.
+            </div>
+          </div>
+
+          <div class="event" data-exp="-4.5">
+            <div class="event-dot"></div>
+            <div class="event-title">Domain motions</div>
+            <div class="event-sub">10⁻⁶–10⁻² s</div>
+            <div class="event-text">
+              Hinge or shear motions between domains, relevant for allostery and
+              binding but difficult to fully converge.
+            </div>
+          </div>
+
+          <div class="event" data-exp="-2">
+            <div class="event-dot"></div>
+            <div class="event-title">Conformational exchange</div>
+            <div class="event-sub">10⁻³–10⁰ s</div>
+            <div class="event-text">
+              Exchange between long-lived conformers; shows up as line
+              broadening or relaxation dispersion in NMR.
+            </div>
+          </div>
+
+          <div class="event" data-exp="0.5">
+            <div class="event-dot"></div>
+            <div class="event-title">Binding / unbinding</div>
+            <div class="event-sub">10⁻²–10² s</div>
+            <div class="event-text">
+              Association and dissociation of ligands, glycans and partners;
+              kinetics that connect dynamics to affinity.
+            </div>
+          </div>
+
+          <div class="event" data-exp="3.2">
+            <div class="event-dot"></div>
+            <div class="event-title">Folding &amp; turnover</div>
+            <div class="event-sub">10²–10⁴ s</div>
+            <div class="event-text">
+              Slow processes such as folding after synthesis, degradation,
+              trafficking and large-scale remodeling.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="axis-caption">
+        Scroll horizontally to traverse the scale. Positions are schematic but
+        log-spaced in seconds, emphasizing how protein motions span many orders
+        of magnitude in time.
+      </p>
+    </main>
+  </div>
+
+  <script>
+    // Log-scale positioning of ticks and events along the timeline
+    (function () {
+      const minExp = -15;  // 10^-15 s
+      const maxExp = 4;    // 10^4 s (~hours)
+      const padding = 60;  // left/right padding in px
+
+      const timeline = document.getElementById("timeline");
+      const width = timeline.offsetWidth || timeline.getBoundingClientRect().width;
+
+      function positionElement(el, attrName) {
+        const exp = parseFloat(el.getAttribute(attrName));
+        if (isNaN(exp)) return;
+        const frac = (exp - minExp) / (maxExp - minExp); // 0..1
+        const x = padding + frac * (width - 2 * padding);
+        el.style.left = x + "px";
+      }
+
+      // Position ticks
+      document.querySelectorAll(".tick").forEach(el => {
+        positionElement(el, "data-exp");
+      });
+
+      // Position tick labels
+      document.querySelectorAll(".tick-label").forEach(el => {
+        positionElement(el, "data-exp-label");
+      });
+
+      // Position events
+      document.querySelectorAll(".event").forEach(el => {
+        positionElement(el, "data-exp");
+      });
+    })();
+  </script>
+</body>
+</html>

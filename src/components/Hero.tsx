@@ -21,7 +21,7 @@ export function Hero({ setActiveTab }: HeroProps) {
     <section className="h-screen w-full relative overflow-hidden m-0 p-0 flex items-center justify-center">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url(/assets/background.jpg)" }}
+        style={{ backgroundImage: "url(${import.meta.env.BASE_URL}assets/background.jpg)" }}
       />
       {/* Gradient overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-blue-900/40 via-blue-800/30 to-slate-900/50" />
@@ -31,7 +31,7 @@ export function Hero({ setActiveTab }: HeroProps) {
         <div className="mb-6 flex justify-center">
           <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl backdrop-blur-sm bg-white/10">
             <img 
-              src="assets/personal_photo.jpg" 
+              src="${import.meta.env.BASE_URL}assets/personal_photo.jpg" 
               alt="Bhawna Dixit"
               className="w-full h-full object-cover"
             />

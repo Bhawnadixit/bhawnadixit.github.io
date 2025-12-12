@@ -1,0 +1,25 @@
+python
+import random
+import string
+import os
+
+def random_pdb_id():
+    chars = string.ascii_lowercase + string.digits
+    return "".join(random.choice(chars) for _ in range(4))
+
+count = 0
+goal = 100
+
+while count < goal:
+    pid = random_pdb_id()
+    print("Trying:", pid)
+    try:
+        fetch pid, async=0
+        save f"{os.getcwd()}\\proteins\\{pid}.pdb", pid
+        print("Downloaded:", pid)
+        count += 1
+    except:
+        print("Failed:", pid)
+
+print("Done! Downloaded", count, "PDB files.")
+python end

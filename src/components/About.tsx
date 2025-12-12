@@ -74,7 +74,7 @@ export function About({ setActiveTab }: AboutProps) {
       <div className="mt-12 space-y-12">
         <div className="bg-gradient-to-br from-white to-blue-50 rounded-3xl p-8 shadow-lg border border-blue-100">
           <img
-            src="assets/agp_dynamics_slide.gif"
+            src="${import.meta.env.BASE_URL}assets/agp_dynamics_slide.gif"
             alt="Replicate molecular dynamics (MD) simulations of AGP"
             className="block w-full rounded-2xl shadow-md mb-6"
           />
@@ -92,7 +92,7 @@ export function About({ setActiveTab }: AboutProps) {
 
         <div className="bg-gradient-to-br from-white to-slate-50 rounded-3xl p-8 shadow-lg border border-slate-200">
           <img
-            src="assets/nma.gif"
+            src="${import.meta.env.BASE_URL}assets/nma.gif"
             alt="Gradations in protein dynamics"
             className="block w-full rounded-2xl shadow-md mb-6"
           />

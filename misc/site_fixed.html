@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bhawna Dixit – Protein Molecular Modeling & Structural Bioinformatics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --accent-dark: #1d4ed8;
+      --text-main: #111827;
+      --text-soft: #4b5563;
+      --text-muted: #9ca3af;
+      --border-subtle: #e5e7eb;
+      --max-width: 960px;
+    }
+
+    * { box-sizing: border-box; }
+
+ /*   body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #ffffff;
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    } */
+    /*html, body { height: 100%; } */
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #ffffff;
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+
+    a {
+      color: var(--accent-dark);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+
+    /* HEADER / NAV */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.8rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: conic-gradient(from 210deg, #1d4ed8, #22c55e, #f97316, #1d4ed8);
+      position: relative;
+      overflow: hidden;
+    }
+    .nav-badge::after {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border-radius: inherit;
+      background: #ffffff;
+    }
+    .nav-initials {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .nav-name {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .nav-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .nav-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .nav-tab {
+      border-radius: 999px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.88rem;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-soft);
+      cursor: pointer;
+      transition: background 0.12s ease, color 0.12s ease, border 0.12s ease, transform 0.08s ease;
+    }
+    .nav-tab:hover {
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      border-color: var(--accent-soft);
+      transform: translateY(-1px);
+    }
+    .nav-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+      /* HERO (full-width, full-height) */
+    .hero {
+      height: 100vh;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url("assets/background.jpg"); /* replace with your image */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* Center the text inside the hero */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Overlay text without background */
+    .hero-overlay {
+      position: absolute;
+      z-index: 1;
+      text-align: center;
+      color: white;
+      padding: 0 1rem;
+      font-family: 'Open Sans', sans-serif; /* match Robin Wieruch hero style */
+    }
+
+    .hero-title {
+      font-family: 'Open Sans', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin: 0 0 0.3rem;
+    }
+
+    .hero-tagline {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 400;
+      opacity: 0.9;
+    }
+
+
+    /* About-page hero GIF under intro */
+    .hero-figure {
+      margin-top: 2rem;
+    }
+
+    .hero-gif {
+      display: block;
+      width: 100%;
+      max-width: 900px;   /* tweak if you want it narrower/wider */
+      margin: 0 auto;
+    }
+
+    .hero-caption {
+      margin-top: 0.45rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Sections with video backgrounds */
+  .page-with-video-bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Video layer */
+  .section-video-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .section-video-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* behaves like background-size: cover */
+    opacity: 0.65;       /* adjust for readability */
+  }
+
+  /* Foreground content */
+  .section-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-video-bg::after {
+  background: rgba(0,0,0,0.12);
+  }
+
+
+
+
+
+
+
+    /* HERO: layout with avatar upload */
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .hero-text { text-align: center; }
+
+    .hero-avatar { display: flex; justify-content: center; }
+    .avatar-upload {
+      width: 132px;
+      height: 132px;
+      border-radius: 999px;
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.10);
+    }
+    .avatar-upload input { display: none; }
+    .avatar-upload img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .avatar-hint {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 0.35rem 0.2rem;
+      font-size: 0.72rem;
+      text-align: center;
+      color: #ffffff;
+      background: rgba(0,0,0,0.35);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    @media (min-width: 820px) {
+      .hero-text { text-align: left; }
+      .hero-inner { justify-content: space-between; width: min(980px, 100%); }
+    }
+
+
+
+    /* CONTACT: full background video with white form boxes */
+    #page-contact {
+      position: relative;
+      min-height: 100vh;
+      padding: 0;
+      overflow: hidden;
+    }
+    #page-contact .section-video-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    #page-contact .section-video-bg video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #page-contact .contact-overlay {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 4rem 1.25rem 3.5rem;
+      color: #ffffff;
+    }
+    #page-contact .contact-overlay h2,
+    #page-contact .contact-overlay .lead,
+    #page-contact .contact-overlay label {
+      color: #ffffff;
+    }
+
+    #page-contact .contact-form {
+      margin-top: 1.1rem;
+    }
+
+    #page-contact input,
+    #page-contact textarea {
+      background: rgba(255,255,255,0.96);
+      color: #111827;
+      border: 1px solid rgba(255,255,255,0.0);
+    }
+
+    #page-contact .btn-primary {
+      margin-top: 0.9rem;
+      background: rgba(255,255,255,0.92);
+      color: #111827;
+    }
+    #page-contact .btn-primary:hover {
+      background: rgba(255,255,255,1);
+    }
+
+
+    /* LAYOUT */
+    main {
+      flex: 1;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem 3rem;
+    }
+    @media (max-width: 640px) {
+      main { padding-inline: 1rem; }
+    }
+
+    .page-section {
+      display: none;
+      padding: 1.6rem 0 1.8rem;
+    }
+    .page-section.active { display: block; }
+
+    .page-section > .eyebrow { display: none; }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.72rem;
+      color: var(--accent-dark);
+      margin-bottom: 0.25rem;
+    }
+    h1 {
+      font-size: clamp(1.9rem, 3vw, 2.2rem);
+      margin: 0 0 0.45rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin: 0 0 0.45rem;
+    }
+    .lead {
+      font-size: 0.97rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+      margin: 0 0 1rem;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.6rem 0 1.3rem;
+    }
+    .pill {
+      font-size: 0.75rem;
+      border-radius: 999px;
+      padding: 0.25rem 0.6rem;
+      background: #f3f4f6;
+      color: var(--text-soft);
+      border: 1px solid #e5e7eb;
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+    .meta-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .meta-dot::before {
+      content: "•";
+      margin-right: 0.22rem;
+    }
+
+    /* === PUBLICATION YEAR BLOCKS WITH FIXED BOXES === */
+
+    .pub-year-block {
+      margin-top: 1.8rem;
+    }
+
+    .pub-year-heading {
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .pub-year-grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 350px);  /* one column, fixed size range */
+    justify-content: center;                      /* center the single column */
+    gap: 1.6rem;
+  }
+
+
+
+    /* clickable box */
+    .pub-box {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* the rounded rectangle (fixed size) */
+    .pub-box-inner {
+      border-radius: 28px;
+      border: 2px solid #38bdf8;
+      background: #f9fafb;
+      height: 260px;                    /* fixed box height */
+      padding: 0.3rem;                        /* no inner padding */
+      overflow: hidden;                  /* keep image clipped to rounded shape */
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+    }
+
+    /* image fills the box */
+    .pub-box-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;                 /* fill box, even if it crops a bit */
+      display: block;
+    }
+
+
+    /* title under the box */
+    .pub-box-title {
+      margin-top: 0.6rem;
+      font-size: 0.92rem;
+      text-align: justify;              /* requested */
+      color: #111827;
+    }
+
+    /* small line with venue/journal */
+    .pub-box-venue {
+      margin-top: 0.25rem;
+      font-size: 0.82rem;
+      color: #4b5563;
+    }
+
+
+    .pub-box-links a {
+      color: #2563eb;
+      text-decoration: none;
+      margin-right: 0.7rem;
+      border-bottom: 1px solid transparent;
+
+      /* NEW: let long URLs wrap, so the box doesn't force extra width */
+      word-break: break-word;     /* or: overflow-wrap: anywhere; */
+      max-width: 100%;
+      display: inline-block;
+    }
+
+    .pub-box-links a:hover {
+      border-bottom-color: #2563eb;
+    }
+
+
+    /* hover state for clickable boxes */
+    .pub-box[href] .pub-box-inner:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.25);
+      border-color: #2563eb;
+    }
+
+    .hero-next-agp {
+    margin: 0.7rem auto 0;
+    padding: 0.5rem 1.1rem;
+    border: none;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: block;
+    }
+    .hero-next-agp:hover {
+      background: var(--accent-dark);
+    }
+
+    .hero-next-gradations {
+    margin: 0.7rem auto 0;
+    padding: 0.5rem 1.1rem;
+    border: none;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: block;
+    }
+    .hero-next-gradations:hover {
+      background: var(--accent-dark);
+    }
+
+    .hero-caption {
+  margin-bottom: 1rem; /* ensures caption doesn't touch next hero */
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+
+
+    /* Publications list */
+    /* .pub-year {
+      font-weight: 600;
+      margin-top: 1.35rem;
+      margin-bottom: 0.3rem;
+      color: var(--text-main);
+    }
+    .pub-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .pub-item {
+      margin-bottom: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      line-height: 1.55;
+    }
+    .pub-title {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .pub-venue {
+      font-style: italic;
+      color: var(--text-muted);
+    }
+    .pub-links {
+      margin-top: 0.15rem;
+      font-size: 0.85rem;
+    }
+    .pub-links a { margin-right: 0.4rem; }
+
+    /* PROJECTS */
+    .project-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0.2rem 0 0;
+    }
+    .project-item {
+      padding: 0.6rem 0;
+      border-bottom: 1px dashed #e5e7eb;
+    }
+    .project-item:last-child { border-bottom: none; }
+    .project-name {
+      font-weight: 600;
+      font-size: 0.93rem;
+    }
+    .project-desc {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      margin-top: 0.15rem;
+    }
+
+    /* CONTACT FORM */
+    .form-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 0.85rem;
+    }
+    @media (max-width: 720px) {
+      .form-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      font-size: 0.87rem;
+    }
+    label { color: var(--text-soft); }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+      padding: 0.55rem 0.65rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      background: #f9fafb;
+    }
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      background: #ffffff;
+    }
+    .btn-primary {
+      border-radius: 999px;
+      padding: 0.55rem 1.2rem;
+      font-size: 0.9rem;
+      border: none;
+      background: var(--accent);
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 0.6rem;
+    }
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+    .contact-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* PROTEIN TIME STRIP */
+    .time-intro {
+      margin-bottom: 1.1rem;
+    }
+
+    .timestrip-shell {
+      margin: 0;
+    }
+    .timestrip-scroll {
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 1.2rem;  /* space above scrollbar */
+      white-space: nowrap;
+    }
+    .time-axis-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .timestrip-track {
+      display: inline-flex;
+      gap: 2.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      position: relative;
+    }
+
+    .time-stop {
+      flex: 0 0 auto;
+      min-width: 210px;
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      position: relative;
+      padding-top: 0.8rem;
+    }
+    .time-stop::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1px;
+      height: 10px;
+      background: #9ca3af;
+    }
+    .time-label {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--accent-dark);
+      margin-bottom: 0.05rem;
+    }
+    .time-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .time-desc {
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+
+      /* NORMAL footer at the very bottom - no gaps, no fixed position */
+
+    footer {margin-top: auto; 
+      background: #f9fafb;
+      border-top: 1px solid #e5e7eb;
+      padding: 0.8rem 1.25rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.5rem 1rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.1rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a { margin-left: 0.5rem; }
+/* === PROTEINS: full-width time strip + bottom ruler === */
+
+    /* Let the whole proteins section breathe a bit above the footer */
+    #page-proteins {
+      padding-bottom: 2.5rem;
+    }
+
+    /* Make the scroll area break out of the centered 960px layout */
+    #page-proteins .timestrip-scroll {
+      width: 100vw;                          /* full browser width */
+      margin-left: calc(50% - 50vw);         /* align left edge with screen */
+      padding: 0 0 0.4rem 0;                 /* small spacing above browser scrollbar */
+    }
+    
+    /* Make the track a bit deeper so text has room, but keep it tight */
+    #page-proteins .timestrip-track {
+      gap: 3.5rem;
+      padding: 0.5rem 2rem 0.8rem 2rem;
+    }
+    
+    /* Bottom ruler bar (fs→ps→…→h) */
+    .time-ruler {
+      position: relative;
+      width: 100vw;                          /* full width ruler */
+      margin-left: calc(50% - 50vw);         /* align with scroll strip */
+      height: 40px;
+      margin-top: 0.4rem;
+    }
+    
+    /* The base line of the ruler */
+    .time-ruler-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #d1d5db;
+    }
+    
+    /* Tick labels */
+    .time-ruler-ticks span {
+      position: absolute;
+      font-size: 0.72rem;
+      color: #6b7280;
+      transform: translateX(-50%);
+    }
+    
+    /* Small vertical ticks on the line */
+    .time-ruler-ticks span::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      width: 1px;
+      height: 10px;
+      background: #9ca3af;
+    }
+    
+    /* Positions of each time unit along the ruler (0–100%) */
+    .tick-fs  { left: 0%;   }
+    .tick-ps  { left: 14%;  }
+    .tick-ns  { left: 28%;  }
+    .tick-us  { left: 42%;  }
+    .tick-ms  { left: 56%;  }
+    .tick-s   { left: 70%;  }
+    .tick-min { left: 84%;  }
+    .tick-h   { left: 100%; }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav-inner">
+      <div class="nav-left">
+        <div class="nav-badge">
+          <div class="nav-initials">BD</div>
+        </div>
+        <div>
+          <div class="nav-name">Bhawna Dixit</div>
+          <div class="nav-subtitle">Protein molecular modeling &amp; structural bioinformatics</div>
+        </div>
+      </div>
+      <nav class="nav-right" aria-label="Main site sections">
+        <button class="nav-tab active" data-target="about" type="button">About</button>
+        <button class="nav-tab" data-target="publications" type="button">Publications</button>
+        <button class="nav-tab" data-target="proteins" type="button">Proteins</button>
+        <button class="nav-tab" data-target="projects" type="button">Projects</button>
+        <button class="nav-tab" data-target="contact" type="button">Contact</button>
+      </nav>
+    </div>
+  </header>
+
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+       <!-- Text overlay in the center -->
+      <div class="hero-overlay">
+        <div class="hero-inner">
+          <div class="hero-text">
+            <h1 class="hero-title">Bhawna Dixit</h1>
+            <p class="hero-tagline">Protein molecular modeling · NMR · AlphaFold · Dynamics · AI</p>
+          </div>
+
+          <div class="hero-avatar">
+            <label class="avatar-upload" title="Upload a profile photo">
+              <input id="avatar-input" type="file" accept="image/*" />
+              <img id="avatar-preview" src="assets/profile_placeholder.jpg" alt="Profile photo preview" />
+              <span class="avatar-hint">Upload</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+  <main>
+
+    <!-- ABOUT -->
+    <section class="page-section active" id="page-about">
+      <div class="eyebrow">About</div>
+      <h1>Exploring protein dynamics and flexibility.</h1>
+      <p class="lead">
+        I am a PhD graduate working at the interface of protein molecular modeling,
+        structural bioinformatics and biophysical predictions. My research combines
+        molecular dynamics (MD) simulations, NMR ensembles, AlphaFold2 models and
+        large-scale normal mode analysis (NMA) to understand how gradations in protein
+        flexibility shape function and interpretation.
+      </p>
+      <div class="pill-row">
+        <span class="pill">Gradations in protein dynamics (AF–NMR–NMA)</span>
+        <span class="pill">α-1 acid glycoprotein (AGP) dynamics in cancer</span>
+        <span class="pill">Protein biophysical feature prediction</span>
+        <span class="pill">Molecular dynamics &amp; ensemble analysis</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-dot">
+          ORCID:
+          <a href="https://orcid.org/0000-0003-4718-4911" target="_blank" rel="noopener noreferrer">
+            0000-0003-4718-4911
+          </a>
+        </span>
+        <span class="meta-dot">
+          GitHub:
+          <a href="https://github.com/Bhawnadixit" target="_blank" rel="noopener noreferrer">
+            github.com/Bhawnadixit
+          </a>
+        </span>
+        <span class="meta-dot">
+          Bio2Byte:
+          <a href="https://bio2byte.be/people/41" target="_blank" rel="noopener noreferrer">
+            profile &amp; projects
+          </a>
+        </span>
+      </div>
+      
+      
+      <div class="hero-figure">
+        <img
+          src="assets/agp_dynamics_slide.gif"
+          alt="Replicate molecular dynamics (MD) simulations of AGP showing variations in flexibility"
+          class="hero-gif"
+        />
+        <p class="hero-caption">
+          This animation shows triplicate MD simulations of α-1 acid glycoprotein (AGP), an acute-phase immunomodulatory protein whose five N-glycans are absent in crystal structures due to their high flexibility. The simulations compare AGP (unglycosylated) and gly-AGP (fully glycosylated) across cancer-associated mutant (R101W). On the left, RMSF for a key fragment shows how backbone flexibility shifts across replicas: glycosylation can increase motion through protein–glycan interactions, while mutations may enhance or dampen flexibility depending on local context. Together, the replicas and RMSF view illustrate AGP’s characteristic context-dependent, ambiguous flexibility.
+        </p>
+
+         <!-- NEW "next" box -->
+        <button class="hero-next-agp">
+          Go to AGP publication →
+        </button>
+      </div>
+
+      <div class="hero-figure2">
+        <img
+          src="assets/nma.gif"
+          alt="Gradations in protein dynamics captured by computational and experimental methods"
+          class="hero-gif"
+        />
+        <p class="hero-caption">
+          This figure (left) compares multiple measures of protein flexibility across large-scale datasets, linking computational predictions to experimental observations. We evaluated how AlphaFold2 pLDDT scores, NMR-derived RCI/S² metrics, MD-derived fluctuations, and Normal Mode Analysis (NMA)-computed RMSF relate to each other. NMA, applied to an equilibrium conformer, generates low-frequency collective motions through eigenvalues and eigenvectors of the Hessian matrix; RMSF was computed using the first 200 non-trivial modes. This enables a fast, consistent estimation of functional protein motions and their agreement with experimental dynamics.
+          This plot (right) shows the Pearson correlation between NMA-computed RMSF and NMR S² across AlphaFold2 structures and their corresponding NMR ensembles. Correlations improve substantially when NMA is run on NMR ensemble models rather than on single AlphaFold2 structures. Ensembles provide multiple conformers that better represent solution-state uncertainty, allowing NMA to capture experimentally observed dynamics more faithfully.
+        </p>
+
+         <!-- NEW "next" box -->
+        <button class="hero-next-gradations">
+          Go to Gradations publication →
+        </button>
+      </div>
+
+    </section>
+
+
+    <!-- PUBLICATIONS -->
+    <section class="page-section" id="page-publications">
+      <div class="eyebrow">Publications</div>
+      <p class="lead">
+        Research work.
+      </p>
+
+      <!-- 2025 -->
+      <div class="pub-year-block">
+        <div class="pub-year-heading">2025</div>
+        <div class="pub-year-grid">
+
+          <!-- Box 1 – PhD thesis (replace # with thesis link when you have it) -->
+          <a class="pub-box" href="https://www.ugent.be/ea/ibitech/en/about-us/biommeda-staff-1/phd/phd_bhawna_dixit-2025.pdf" target="_blank" rel="noopener noreferrer">
+            <div class="pub-box-inner">
+              <img src="assets/illustration-bhawnadixit.jpg"
+                  alt="Investigating protein flexibility – PhD thesis" />
+            </div>
+            <div class="pub-box-title">
+              Investigating protein flexibility using molecular dynamics simulations of
+              α-1 acid glycoprotein and large-scale normal mode analysis of AlphaFold models
+            </div> 
+            <div class="pub-box-venue">
+              PhD thesis, Ghent University &amp; Vrije Universiteit Brussel, 2025
+            </div>
+          </a>
+
+          <!-- Box 2 – AF–NMR–NMA -->
+          <a id="pub-gradations" class="pub-box" href="https://doi.org/10.1016/j.jmb.2024.168900" target="_blank" rel="noopener noreferrer">
+            <div class="pub-box-inner">
+              <img src="assets/grad.jpg"
+                  alt="Gradations in protein dynamics - AF-NMR-NMA" />
+            </div>
+            <div class="pub-box-title">
+              Gradations in protein dynamics captured by experimental NMR are not well
+              represented by AlphaFold2 models and other computational metrics
+            </div>
+            <div class="pub-box-venue">
+              Journal of Molecular Biology 437(2):168900, 2025
+            </div>
+            <div class="pub-box-links">
+              <a href="https://bio2byte.be/af_nmr_nma/" target="_blank" rel="noopener noreferrer">
+              AF-NMR-NMA resource
+              </a>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- 2024 -->
+      <div class="pub-year-block" >
+        <div class="pub-year-heading">2024</div>
+        <div class="pub-year-grid">
+
+          <a id="pub-agp" class="pub-box"
+            href="https://doi.org/10.1002/prot.26607"
+            target="_blank" rel="noopener noreferrer">
+            <div class="pub-box-inner">
+              <img src="assets/agp.png"
+                  alt="AGP dynamics in cancer" />
+            </div>
+            <div class="pub-box-title">
+              Conformational dynamics of α-1 acid glycoprotein (AGP) in cancer:
+              A comparative study of glycosylated and unglycosylated AGP
+            </div>
+            <div class="pub-box-venue">
+              PROTEINS: Structure, Function, and Bioinformatics 92(2):246–264, 2024
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- 2022 -->
+      <div class="pub-year-block">
+        <div class="pub-year-heading">2022</div>
+        <div class="pub-year-grid">
+
+          <a class="pub-box" href="https://www.frontiersin.org/journals/molecular-biosciences/articles/10.3389/fmolb.2022.959956/full" target="_blank" rel="noopener noreferrer">
+            <div class="pub-box-inner">
+              <img src="assets/challenges.png"
+                  alt="Ambiguous protein dynamics" />
+            </div>
+            <div class="pub-box-title">
+              Challenges in describing the conformation and dynamics of proteins with ambiguous behavior
+            </div>
+            <div class="pub-box-venue">
+              Frontiers in Molecular Biosciences, 2022
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- 2021 -->
+      <div class="pub-year-block">
+        <div class="pub-year-heading">2021</div>
+        <div class="pub-year-grid">
+
+          <a class="pub-box"
+            href="https://doi.org/10.1093/nar/gkab425" target="_blank" rel="noopener noreferrer">
+            <div class="pub-box-inner">
+              <img src="assets/b2btools.jpeg"
+                  alt="b2bTools online predictions" />
+            </div>
+            <div class="pub-box-title">
+              b2bTools: online predictions for protein biophysical features and their conservation
+            </div>
+            <div class="pub-box-venue">
+              Nucleic Acids Research 49(W1):W52–W59, 2021
+            </div>
+                        <div class="pub-box-links">
+                          <a href="https://bio2byte.be/b2btools/" target="_blank" rel="noopener noreferrer">
+                            b2bTools web server
+                          </a>
+            </div>
+          </a>
+
+          <!-- UGent Repository Entry -->
+          <a class="pub-box"
+            href="https://biblio.ugent.be/publication/8718837"
+            target="_blank" rel="noopener noreferrer">
+
+            <div class="pub-box-inner">
+              <img src="assets/Figure_1.png"
+                  alt="BioSB poster" />
+            </div>
+
+            <div class="pub-box-title">
+              Backbone dynamics alignment of proteins : harnessing biophysical fingerprints in pairwise sequence alignment
+            </div>
+
+            <div class="pub-box-venue">
+              Ghent University, 2021
+            </div>
+
+          </a>
+
+        </div>
+      </div>
+
+      <!-- 2017 -->
+      <div class="pub-year-block">
+        <div class="pub-year-heading">2017</div>
+        <div class="pub-year-grid">
+
+          <!-- Publication 1: CMPF–HSA review -->
+          <a class="pub-box"
+            href="https://bioinformaticsreview.com/20170929/a-review-on-the-effects-of-cmpf-binding-with-human-serum-albumin/"
+            target="_blank" rel="noopener noreferrer">
+
+            <div class="pub-box-inner">
+              <img src="assets/hsa.png"/>
+            </div>
+
+            <div class="pub-box-title">
+              A review on the effects of CMPF binding with Human Serum Albumin
+            </div>
+
+            <div class="pub-box-venue">
+              Dixit, B. (2017). Bioinformatics Review, 3(9), 9–18.
+            </div>
+
+          </a>
+
+        </div>
+      </div>
+
+
+    </section>
+
+
+    <!-- PROTEINS: TIME SCALE ONLY -->
+    <section class="page-section" id="page-proteins">
+      <div class="eyebrow">Proteins</div>
+      <h2>Protein time scales</h2>
+      <p class="lead time-intro">
+        Inspired by pixel-accurate solar system maps, this strip places protein motions
+        along a single time axis, from femtosecond (fs) bond vibrations to hours-long
+        conformational and functional changes. Scroll horizontally to move along the axis.
+      </p>
+    
+      <div class="timestrip-shell" aria-label="Protein time scale">
+        <div class="time-axis-label">
+          Time scale → from ultrafast vibrations to slow functional motions
+        </div>
+            <!-- NEW: dynamic scale readout -->
+        <div class="time-counter-row">
+            <span class="time-counter-label">Scale</span>
+            <span id="time-counter" class="time-counter-value">
+                ≈ 1.0 × 10⁻¹⁵ s (1.0 fs)
+            </span>
+        </div>
+    
+        <div class="timestrip-scroll">
+          <div class="timestrip-track">
+            <div class="time-stop" data-time="1e-14">
+              <div class="time-label">Bond vibrations</div>
+        
+              <img src="assets/bond_vibrations.gif"
+                   alt="Bond vibrations"
+                   style="max-height:150px; display:block; margin:0.4rem 0;" />
+        
+              <div class="time-sub">10⁻¹⁵–10⁻¹² s (fs–ps)</div>
+              <div class="time-desc">
+                Fast stretching and bending of bonds and angles. These motions
+                are typically averaged out in most experiments, but define the
+                high-frequency limit of protein dynamics.
+              </div>
+            </div>
+        
+            <div class="time-stop" data-time="1e-11">
+              <div class="time-label">Side-chain flickers</div>
+              <div class="time-sub">10⁻¹²–10⁻⁹ s (ps–ns)</div>
+              <div class="time-desc">
+                Local χ-angle rotations and backbone wobbles. They modulate local
+                packing and show up in NMR order parameters and short MD trajectories.
+              </div>
+            </div>
+        
+            <div class="time-stop" data-time="1e-8">
+              <div class="time-label">Loop breathing</div>
+              <div class="time-sub">10⁻⁹–10⁻⁶ s (ns–μs)</div>
+              <div class="time-desc">
+                Opening and closing of loops and turns, altering the exposure of
+                binding pockets, glycosylation sites and epitopes.
+              </div>
+            </div>
+        
+            <div class="time-stop" data-time="1e-5">
+              <div class="time-label">Secondary-structure shifts</div>
+              <div class="time-sub">10⁻⁶–10⁻³ s (μs–ms)</div>
+              <div class="time-desc">
+                Helix–coil transitions and β-structure rearrangements. These
+                gradations are central to ambiguous or “fuzzy” protein regions.
+              </div>
+            </div>
+        
+            <div class="time-stop" data-time="1e-2">
+              <div class="time-label">Domain motions</div>
+              <div class="time-sub">10⁻³–10⁰ s (ms–s)</div>
+              <div class="time-desc">
+                Hinge and shear motions between domains that often control
+                allosteric regulation and long-range communication.
+              </div>
+            </div>
+        
+            <div class="time-stop" data-time="1">
+              <div class="time-label">Conformational exchange</div>
+              <div class="time-sub">10⁰–10² s (s–min)</div>
+              <div class="time-desc">
+                Exchange between long-lived conformers. Detected as line
+                broadening and relaxation dispersion in NMR.
+              </div>
+            </div>
+        
+            <div class="time-stop" data-time="10">
+              <div class="time-label">Binding / unbinding</div>
+              <div class="time-sub">10⁻³–10² s</div>
+              <div class="time-desc">
+                Association and dissociation of ligands, glycans and partners.
+                Kinetics here link conformational dynamics directly to affinity.
+              </div>
+            </div>
+        
+            <div class="time-stop" data-time="1e4">
+              <div class="time-label">Turnover &amp; remodeling</div>
+              <div class="time-sub">10²–10⁴ s (min–h)</div>
+              <div class="time-desc">
+                Slow processes such as folding after synthesis, degradation,
+                trafficking and large-scale remodeling within cells.
+              </div>
+            </div>
+          </div> <!-- end .timestrip-track -->
+        </div>   <!-- end .timestrip-scroll -->
+        
+        <div class="time-axis-label" style="margin-top:0.35rem;">
+          Scroll horizontally to traverse the axis. Values are approximate but ordered to
+          emphasize how protein motions span many orders of magnitude in time.
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PROJECTS -->
+    <section class="page-section" id="page-projects">
+      <div class="eyebrow">Projects</div>
+      <h2>GitHub projects &amp; tooling</h2>
+      <p class="lead">
+        Most of my code is hosted on GitHub under
+        <a href="https://github.com/Bhawnadixit" target="_blank" rel="noopener noreferrer">
+          github.com/Bhawnadixit
+        </a>. Below are the main themes; the full list of repositories is on my profile.
+      </p>
+
+      <ul class="project-list">
+        <li class="project-item">
+          <div class="project-name">
+            <a href="https://github.com/Bhawnadixit/AlphaFold2_NMR_fluctuations"
+              target="_blank" rel="noopener noreferrer">
+              AlphaFold2_NMR_fluctuations
+            </a>
+          </div>
+          <div class="project-desc">
+            Pipeline for running normal mode analysis (WEBnma) on AlphaFold2 models and mapped NMR
+            ensembles, computing residue fluctuations and contacts, and comparing experimental vs
+            computational flexibility profiles across many structures. 
+          </div>
+        </li>
+
+        <li class="project-item">
+          <div class="project-name">
+            <a href="https://github.com/Bhawnadixit/glycan_struct_mapping"
+              target="_blank" rel="noopener noreferrer">
+              glycan_struct_mapping
+            </a>
+          </div>
+          <div class="project-desc">
+            Tools for converting specific glycan IUPAC strings into structural mappings and computing
+            glycosidic φ/ψ dihedrals, useful for analyzing glycan conformations in MD or static models. :contentReference[oaicite:1]{index=1}
+          </div>
+        </li>
+
+        <li class="project-item">
+          <div class="project-name">
+            <a href="https://github.com/Bhawnadixit/protein_sequence_network_analysis"
+              target="_blank" rel="noopener noreferrer">
+              protein_sequence_network_analysis
+            </a>
+          </div>
+          <div class="project-desc">
+            Analysis workflow for clustering and visualizing unannotated protein sequence datasets using
+            CD-HIT, MMseqs2 and network graphs, with radial trees for phylogenetic-style classification. :contentReference[oaicite:2]{index=2}
+          </div>
+        </li>
+
+        <li class="project-item">
+          <div class="project-name">
+            <a href="https://github.com/Bhawnadixit/Deeplearning_assignmentss"
+              target="_blank" rel="noopener noreferrer">
+              Deeplearning_assignmentss
+            </a>
+          </div>
+          <div class="project-desc">
+            Google Colab notebooks from deep learning / AI courses with my introductory experience with
+            TensorFlow and neural networks on practical assignments. 
+          </div>
+        </li>
+      </ul>
+
+    </section>
+
+    <!-- CONTACT -->
+    <section class="page-section page-with-video-bg" id="page-contact">
+      <div class="section-video-bg" aria-hidden="true">
+        <video autoplay muted loop playsinline>
+          <source src="assets/movie_proteins_cropped.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="section-content contact-overlay">
+        <h2>Contact</h2>
+        <p class="lead">
+          For postdoctoral opportunities, collaborations, or questions about my work,
+          please reach out using the form below or via email.
+        </p>
+
+        <form action="https://formspree.io/f/xdkqpzew" method="POST" class="contact-form">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" required />
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" name="_replyto" type="email" required />
+            </div>
+          </div>
+
+          <div class="form-field" style="margin-top:0.7rem;">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary">Send message</button>
+        </form>
+
+        <div class="meta-row" style="margin-top:1.3rem;">
+          <span class="meta-dot">
+            Email:
+            <a href="mailto:bhawna.dixit@vub.be">bhawna.dixit@vub.be</a>
+          </span>
+          <span class="meta-dot">
+            ORCID:
+            <a href="https://orcid.org/0000-0003-4718-4911" target="_blank" rel="noopener noreferrer">
+              0000-0003-4718-4911
+            </a>
+          </span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> Bhawna Dixit</div>
+      <div class="footer-links">
+        <a href="https://github.com/Bhawnadixit" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://orcid.org/0000-0003-4718-4911" target="_blank" rel="noopener noreferrer">ORCID</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  // ---- Tabs ----
+  const tabs = document.querySelectorAll(".nav-tab");
+  const sections = {
+    about: document.getElementById("page-about"),
+    publications: document.getElementById("page-publications"),
+    proteins: document.getElementById("page-proteins"),
+    projects: document.getElementById("page-projects"),
+    contact: document.getElementById("page-contact"),
+  };
+  const hero = document.getElementById("hero");
+
+  function activate(target) {
+    tabs.forEach(t => t.classList.toggle("active", t.getAttribute("data-target") === target));
+    Object.entries(sections).forEach(([key, el]) => {
+      if (!el) return;
+      el.classList.toggle("active", key === target);
+    });
+
+    // Show hero only on About
+    if (hero) hero.style.display = (target === "about") ? "flex" : "none";
+
+    // Returning to About: keep hero centered reliably
+    if (target === "about") window.scrollTo({ top: 0, behavior: "auto" });
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => activate(tab.getAttribute("data-target")));
+  });
+
+  // ---- Footer year ----
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // ---- Avatar upload preview (hero) ----
+  const avatarInput = document.getElementById("avatar-input");
+  const avatarPreview = document.getElementById("avatar-preview");
+  if (avatarInput && avatarPreview) {
+    avatarInput.addEventListener("change", () => {
+      const file = avatarInput.files && avatarInput.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      avatarPreview.src = url;
+    });
+  }
+
+  // ---- Jump buttons (About -> Publications tiles) ----
+  function wireJump(buttonSelector, tabTarget, elementId) {
+    const btn = document.querySelector(buttonSelector);
+    const tile = document.getElementById(elementId);
+    const tab = document.querySelector(`.nav-tab[data-target="${tabTarget}"]`);
+    if (!btn || !tile || !tab) return;
+
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      tab.click();
+      setTimeout(() => tile.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
+    });
+  }
+  wireJump(".hero-next-agp", "publications", "pub-agp");
+  wireJump(".hero-next-gradations", "publications", "pub-gradations");
+
+  // ---- Proteins: horizontal scroll, time counter, marker positioning ----
+  const scroller = document.querySelector("#page-proteins .timestrip-scroll");
+  const counterEl = document.getElementById("time-counter");
+  const track = document.querySelector("#page-proteins .timestrip-track");
+
+  if (scroller && counterEl && track) {
+    // mouse wheel -> horizontal scroll
+    scroller.addEventListener("wheel", (evt) => {
+      evt.preventDefault();
+      scroller.scrollLeft += evt.deltaY * 1.1;
+    }, { passive: false });
+
+    const minT = 1e-15;
+    const maxT = 1e4;
+    const logMin = Math.log10(minT);
+    const logMax = Math.log10(maxT);
+
+    function fmt(val) {
+      const abs = Math.abs(val);
+      if (abs >= 1e3 || abs < 1e-2) return val.toExponential(2);
+      return abs >= 10 ? val.toFixed(0) : val.toFixed(2);
+    }
+
+    function formatTime(tSeconds) {
+      const fsVal = tSeconds / 1e-15;
+
+      let unit = "s";
+      let val = tSeconds;
+
+      if (tSeconds < 1e-12)      { unit = "fs";  val = tSeconds / 1e-15; }
+      else if (tSeconds < 1e-9)  { unit = "ps";  val = tSeconds / 1e-12; }
+      else if (tSeconds < 1e-6)  { unit = "ns";  val = tSeconds / 1e-9; }
+      else if (tSeconds < 1e-3)  { unit = "µs";  val = tSeconds / 1e-6; }
+      else if (tSeconds < 1)     { unit = "ms";  val = tSeconds / 1e-3; }
+      else if (tSeconds < 60)    { unit = "s";   val = tSeconds; }
+      else if (tSeconds < 3600)  { unit = "min"; val = tSeconds / 60; }
+      else                       { unit = "h";   val = tSeconds / 3600; }
+
+      return `≈ ${fmt(fsVal)} fs (${fmt(val)} ${unit})`;
+    }
+
+    function updateCounter() {
+      const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+      const frac = maxScroll > 0 ? scroller.scrollLeft / maxScroll : 0;
+      const logT = logMin + frac * (logMax - logMin);
+      counterEl.textContent = formatTime(Math.pow(10, logT));
+    }
+
+    scroller.addEventListener("scroll", updateCounter);
+    updateCounter();
+
+    // Position time-stops by data-time if present
+    const stops = track.querySelectorAll(".time-stop[data-time]");
+    stops.forEach((stop, index) => {
+      const t = Number(stop.getAttribute("data-time"));
+      if (!t || !isFinite(t) || t <= 0) return;
+
+      const frac = Math.min(1, Math.max(0, (Math.log10(t) - logMin) / (logMax - logMin)));
+      stop.style.left = (frac * 100) + "%";
+      stop.style.top = (index % 2 === 0 ? "0%" : "55%");
+      stop.style.transform = "translateX(-50%)";
+      stop.style.position = "absolute";
+    });
+  }
+
+  // Initialize default (About)
+  activate("about");
+});
+</script>
+</body>
+</html>
