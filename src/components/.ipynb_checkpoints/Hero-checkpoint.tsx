@@ -31,7 +31,7 @@ export function Hero({ setActiveTab }: HeroProps) {
         <div className="mb-6 flex justify-center">
           <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl backdrop-blur-sm bg-white/10">
             <img 
-              src="${import.meta.env.BASE_URL}assets/personal_photo.jpg" 
+              src=`${import.meta.env.BASE_URL}assets/personal_photo.jpg` 
               alt="Bhawna Dixit"
               className="w-full h-full object-cover"
             />

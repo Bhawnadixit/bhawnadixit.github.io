@@ -11,7 +11,7 @@ export function Publications() {
       {
         id: 'pub-gradations',
         href: 'https://doi.org/10.1016/j.jmb.2024.168900',
-        image: '${import.meta.env.BASE_URL}assets/gradations_pub.jpg',
+        image: `${import.meta.env.BASE_URL}assets/gradations_pub.jpg`,
         title: 'Gradations in protein dynamics captured by experimental NMR are not well represented by AlphaFold2 models and other computational metrics',
         venue: 'Journal of Molecular Biology 437(2):168900, 2025',
         links: [
@@ -23,7 +23,7 @@ export function Publications() {
       {
         id: 'pub-agp',
         href: 'https://doi.org/10.1002/prot.26607',
-        image: '${import.meta.env.BASE_URL}assets/agp.png',
+        image: `${import.meta.env.BASE_URL}assets/agp.png`,
         title: 'Conformational dynamics of α-1 acid glycoprotein (AGP) in cancer: A comparative study of glycosylated and unglycosylated AGP',
         venue: 'PROTEINS: Structure, Function, and Bioinformatics 92(2):246–264, 2024',
       },
@@ -32,7 +32,7 @@ export function Publications() {
       {
         id: 'challenges',
         href: 'https://www.frontiersin.org/journals/molecular-biosciences/articles/10.3389/fmolb.2022.959956/full',
-        image: '${import.meta.env.BASE_URL}assets/challenges.png',
+        image: `${import.meta.env.BASE_URL}assets/challenges.png`,
         title: 'Challenges in describing the conformation and dynamics of proteins with ambiguous behavior',
         venue: 'Frontiers in Molecular Biosciences, 2022',
       },
@@ -41,7 +41,7 @@ export function Publications() {
       {
         id: 'b2btools',
         href: 'https://doi.org/10.1093/nar/gkab425',
-        image: '${import.meta.env.BASE_URL}assets/b2btools.jpeg',
+        image: `${import.meta.env.BASE_URL}assets/b2btools.jpeg`,
         title: 'b2bTools: online predictions for protein biophysical features and their conservation',
         venue: 'Nucleic Acids Research 49(W1):W52–W59, 2021',
         links: [
@@ -51,7 +51,7 @@ export function Publications() {
       {
         id: 'backbone',
         href: 'https://biblio.ugent.be/publication/8718837',
-        image: '${import.meta.env.BASE_URL}assets/Figure_1.png',
+        image: `${import.meta.env.BASE_URL}assets/Figure_1.png`,
         title: 'Backbone dynamics alignment of proteins : harnessing biophysical fingerprints in pairwise sequence alignment',
         venue: 'Ghent University, 2021',
       },
@@ -60,7 +60,7 @@ export function Publications() {
       {
         id: 'cmpf',
         href: 'https://bioinformaticsreview.com/20170929/a-review-on-the-effects-of-cmpf-binding-with-human-serum-albumin/',
-        image: '${import.meta.env.BASE_URL}assets/hsa.png',
+        image: `${import.meta.env.BASE_URL}assets/hsa.png`,
         title: 'A review on the effects of CMPF binding with Human Serum Albumin',
         venue: 'Dixit, B. (2017). Bioinformatics Review, 3(9), 9–18.',
       },
